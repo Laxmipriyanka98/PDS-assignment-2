@@ -5,7 +5,7 @@ diabetes <- read.csv('C:/Users/priya/OneDrive/Documents/pds assignment-2/assignm
 
 #data clean
 library(dplyr)
-Read the CSV file into a dataframe
+* Read the CSV file into a dataframe
 df <- read.csv('C:/Users/priya/OneDrive/Documents/pds assignment-2/assignment-2/diabetes.csv')
 
 Check for missing values in each column
