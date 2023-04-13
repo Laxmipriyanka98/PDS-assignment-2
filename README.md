@@ -5,21 +5,21 @@ diabetes <- read.csv('C:/Users/priya/OneDrive/Documents/pds assignment-2/assignm
 
 #data clean
 library(dplyr)
-# Read the CSV file into a dataframe
+Read the CSV file into a dataframe
 df <- read.csv('C:/Users/priya/OneDrive/Documents/pds assignment-2/assignment-2/diabetes.csv')
 
-# Check for missing values in each column
+Check for missing values in each column
 missing_values <- colSums(is.na(df))
 
-# Print the missing values count for each columnn
+Print the missing values count for each columnn
 cat("Missing Values Count:\n")
 print(missing_values)
 #Since there are no missing values the data provided is already clean
 
-# set data
+set data
 set.seed(123)
 
-# choose sample of 35 observations
+ choose sample of 35 observations
 sample_data <- diabetes[sample(nrow(diabetes), 26, replace=FALSE), ]
 
 # calculate sample of mean and highest glucose values 
