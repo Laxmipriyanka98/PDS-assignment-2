@@ -1,9 +1,9 @@
 # PDS-assignment-2
 # A Bit
-# data analysis
+# Data analysis
 diabetes <- read.csv('C:/Users/priya/OneDrive/Documents/pds assignment-2/assignment-2/diabetes.csv')
 
-#data clean
+#Data clean
 library(dplyr)
 * Read the CSV file into a dataframe
 df <- read.csv('C:/Users/priya/OneDrive/Documents/pds assignment-2/assignment-2/diabetes.csv')
