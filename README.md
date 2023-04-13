@@ -3,7 +3,7 @@
 # Data analysis
 diabetes <- read.csv('C:/Users/priya/OneDrive/Documents/pds assignment-2/assignment-2/diabetes.csv')
 
-#Data clean
+# Data clean
 library(dplyr)
 * Read the CSV file into a dataframe
 df <- read.csv('C:/Users/priya/OneDrive/Documents/pds assignment-2/assignment-2/diabetes.csv')
@@ -14,7 +14,7 @@ missing_values <- colSums(is.na(df))
 * Print the missing values count for each columnn
 cat("Missing Values Count:\n")
 print(missing_values)
-#Since there are no missing values the data provided is already clean
+# Since there are no missing values the data provided is already clean
 
 * set data
 set.seed(123)
@@ -50,7 +50,7 @@ BMI_95_pop <- quantile(diabetes$BMI, probs=0.95)
 boxplot(diabetes$BMI, sample_data$BMI, names=c("Population", "Sample"), 
         main="Comparing BMI Distributions", ylab="BMI",col="yellow")
 
-#C bit
+# C bit
 * sampling using bootsrap
 library(boot)
 set.seed(122)
