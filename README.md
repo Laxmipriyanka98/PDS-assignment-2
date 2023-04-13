@@ -1,11 +1,11 @@
 # PDS-assignment-2
 # A Bit
-# Data analysis
+# Data analysis 
 diabetes <- read.csv('C:/Users/priya/OneDrive/Documents/pds assignment-2/assignment-2/diabetes.csv')
 
 # Data clean
 library(dplyr)
-* Read the CSV file into a dataframe
+* Read the CSV file into a dataframe /n
 df <- read.csv('C:/Users/priya/OneDrive/Documents/pds assignment-2/assignment-2/diabetes.csv')
 
 * Check for missing values in each column
