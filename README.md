@@ -73,51 +73,74 @@ boxplot(diabetes$BMI, sample_data$BMI, names=c("Population", "Sample"),
         main="Comparing BMI Distributions", ylab="BMI",col="yellow")
 
 # C bit
-* sampling using bootsrap
+* libraries for bootstrapping
 
 library(boot)
 
+* setting seed  121
+
 set.seed(121)
 
-n_samples <- 500
+*  no.of samples to be created
+
+num_samples <- 500
+
+* no.of observations considered 
 
 sample_size <- 150
 
+* calculate mean, standard deviation, and percentile of sample
+
 boot_samples <- boot(diabetes$BloodPressure, function(data, idx) {
+ 
+ boot_means <- mean(data[idx])
+ 
+ boot_sds <- sd(data[idx])
+ 
+ boot_percs <- quantile(data[idx], probs=0.92)
+ 
+ return(c(boot_means, boot_sds, boot_percs))
 
-mean_bp <- mean(data[idx])
+}, R=num_samples, strata=diabetes$Outcome, sim="ordinary")
 
-sd_bp <- sd(data[idx])
+* extract sample bootstrap statistic values 
 
-perc_bp <- quantile(data[idx], probs=0.92)
+bootmean <- boot_samples$t[,1]
 
-return(c(mean_bp, sd_bp, perc_bp))
+mean_bootmean <- mean(bootmean)
 
-}, R=n_samples, strata=diabetes$Outcome, sim="ordinary")
+bootstdev <- boot_samples$t[,2]
 
-* bootstrap statistics extraction
+mean_bootstdev <- mean(bootstdev)
 
-boot_means <- boot_samples$t[,1]
+bootquantile <- boot_samples$t[,3]
 
-boot_sds <- boot_samples$t[,2]
+mean_bootquantile <- mean(bootquantile)
 
-boot_percs <- boot_samples$t[,3]
+* calculate bootstrap statistic values of population
 
-* calculate demographic data
+mean_BPpop <- mean(diabetes$BloodPressure)
 
-mean_bp_pop <- mean(diabetes$BloodPressure)
+sd_BPpop <- sd(diabetes$BloodPressure)
 
-sd_bp_pop <- sd(diabetes$BloodPressure)
+quan_BPpop <- quantile(diabetes$BloodPressure, probs=0.92)
 
-perc_bp_pop <- quantile(diabetes$BloodPressure, probs=0.92)
+* plotting histograms to compare 
 
-* To compare the distributions of bootstrap statistics and population statistics, build histograms.
+quan_compare <- c(Population_quantile=quan_BPpop,Sample_quantile=mean_bootquantile)
 
-par(mfrow=c(1,1))
+mean_compare <- c(Population_mean=mean_BPpop,Sample_mean=mean_bootmean)
 
-hist(boot_means, main="Distributing Bootstrap Mean", xlab="Mean BloodPressure",col="green")
+stdev_compare <- c(Population_stdev=sd_BPpop,Sample_stdev=mean_bootstdev)
 
-abline(v=mean_bp_pop, col="red")
 
-hist(boot_sds, main="Distributing Bootstrap Standard Deviation", xlab="Standard",col="blue")
+
+barplot(quan_compare, col = c("orange","yellow"), space=1,
+        main="Comparing quantile at 95% of population & bootstrap sample of Blood Pressure",xlab="Group",ylab="quantile of value")
+
+barplot(mean_compare, col = c("pink","red"), space=1,
+        main="Comparing mean of population & bootstrap sample of Blood Pressure",xlab="Group",ylab="mean of value")
+
+barplot(stdev_compare, col = c("blue","skyblue"), space=1,
+        main="Comparing of standard deviation of population & bootstrap sample of Blood Pressure",xlab="Group",ylab="standard deviation of value")
 
