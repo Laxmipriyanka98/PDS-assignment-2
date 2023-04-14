@@ -25,7 +25,7 @@ print(missing_values)
 
 * set data
 
-set.seed(122)
+set.seed(121)
 
 * choose sample of 25 observations
 
@@ -77,7 +77,7 @@ boxplot(diabetes$BMI, sample_data$BMI, names=c("Population", "Sample"),
 
 library(boot)
 
-set.seed(122)
+set.seed(121)
 
 n_samples <- 500
 
