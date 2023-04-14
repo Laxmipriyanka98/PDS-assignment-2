@@ -25,11 +25,11 @@ print(missing_values)
 
 * set data
 
-set.seed(123)
+set.seed(122)
 
-* choose sample of 35 observations
+* choose sample of 25 observations
 
-sample_data <- diabetes[sample(nrow(diabetes), 26, replace=FALSE), ]
+sample_data <- diabetes[sample(nrow(diabetes), 25, replace=FALSE), ]
 
 * calculate sample of mean and highest glucose values 
 
@@ -63,9 +63,9 @@ barplot(max_values, main="Comparing Highest Glucose Values", ylab="Highest Gluco
 # B bit
 * to determine the 98th percentile of the population and the sample's BMI
 
-BMI_95_sample <- quantile(sample_data$BMI, probs=0.95)
+BMI_98_sample <- quantile(sample_data$BMI, probs=0.98)
 
-BMI_95_pop <- quantile(diabetes$BMI, probs=0.95)
+BMI_98_pop <- quantile(diabetes$BMI, probs=0.98)
 
 * To compare BMI distributions, build a boxplot.
 
@@ -81,7 +81,7 @@ set.seed(122)
 
 n_samples <- 500
 
-sample_size <- 151
+sample_size <- 150
 
 boot_samples <- boot(diabetes$BloodPressure, function(data, idx) {
 
